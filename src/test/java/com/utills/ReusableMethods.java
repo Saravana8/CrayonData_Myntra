@@ -2,11 +2,13 @@ package com.utills;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,7 +20,7 @@ public class ReusableMethods {
 
 	public void lunchBrowser(String url) {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\vijay\\git\\CryonData_Myntra\\driver\\chromedriver.exe");
+				System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
 
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -46,6 +48,11 @@ public class ReusableMethods {
 	public void typeValue(WebElement element, String text) {
 
 		element.sendKeys(text);
+	}
+	
+	public void mouseOverAction(WebElement element) {
+		Actions action = new Actions(driver);
+		action.moveToElement(element).perform();
 	}
 
 	public void Screenshot_OnFail(Scenario scenario) {
